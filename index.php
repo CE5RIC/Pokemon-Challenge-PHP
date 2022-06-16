@@ -19,6 +19,11 @@
                 <input type="submit" id="btnNumbInput" value="">
             </form>
     <?php
+
+    if (isset($_GET['name'])) {
+ $pokemon = $_GET['name'];
+ echo $pokemon;
+  
            
 
             $api_url = "https://pokeapi.co/api/v2/pokemon/" . $_GET['name'];
@@ -28,18 +33,28 @@
             $name = $data_res['forms']['0']['name'];
            // echo $id;echo "<br>";
             $id = $data_res['id'];
-            $image = $data_res['sprites']['back_default'];
+            $image = $data_res['sprites']['front_default'];
+
+        }
     ?>
 
             <div class="container">
-                Id of the pokemon: <h4><?php echo $id;?></h4>
+                Id of the pokemon: <h4><?php if(isset($_GET['name'])) {
+                 echo $id;
+                } ?></h4>
             </div>
 
-<img src="<?php echo $image;?>">
+
+            <img src ="<?php
+        if (isset($_GET['name'])) {
+            echo $image;
+        }?>">
 
 
 
 
 </body>
 </html>
+
+
 
